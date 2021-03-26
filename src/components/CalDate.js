@@ -13,6 +13,7 @@ const CalDate = ({
   const isToday =
     `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}` ===
     `${currDateObj.getFullYear()}-${currDateObj.getMonth()}-${currDateObj.getDate()}`;
+
   return (
     <div className="CalDate">
       <ul>
