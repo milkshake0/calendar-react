@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 
-const CalMonth = ({ month, year, onSetYear, onSetMonth }) => {
+const CalMonth = ({ month, onClickNextBtn, onClickPrevBtn }) => {
   const monthObj = {
     0: "JANUARY",
     1: "FEBRUARY",
@@ -17,21 +17,7 @@ const CalMonth = ({ month, year, onSetYear, onSetMonth }) => {
     10: "NOVEMBER",
     11: "DECEMBER",
   };
-  const onClickNextBtn = () => {
-    let monthNum = (month % 12) + 1;
-    if (monthNum === 12) {
-      monthNum = 0;
-      onSetYear(year + 1);
-    }
-    onSetMonth(monthNum);
-  };
-  const onClickPrevBtn = () => {
-    let monthNum = (month - 1 + 12) % 12;
-    if (monthNum === 0) {
-      onSetYear(year - 1);
-    }
-    onSetMonth(monthNum);
-  };
+
   return (
     <div className="CalMonth">
       <button onClick={onClickPrevBtn}>

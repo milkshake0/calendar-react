@@ -17,11 +17,11 @@ const CalendarPage = () => {
 
   const onSetYear = useCallback((year) => {
     setYear(year);
-  });
+  }, []);
 
   const onSetMonth = useCallback((month) => {
     setMonth(month);
-  });
+  }, []);
 
   //   const onSetDay = (day) => {
   //     setDay(day);
@@ -56,7 +56,6 @@ const CalendarPage = () => {
       currArr[i] = i + 1;
     }
     setCurrDate(currArr);
-    return currArr;
   };
 
   const setNextDateOfMonth = (year, month) => {
@@ -69,6 +68,24 @@ const CalendarPage = () => {
     setNextDate(nextArr);
   };
 
+  const onClickNextBtn = useCallback(() => {
+    let monthNum = (month % 12) + 1;
+    if (monthNum === 12) {
+      monthNum = 0;
+      onSetYear(year + 1);
+    }
+    onSetMonth(monthNum);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [month, year]);
+  const onClickPrevBtn = useCallback(() => {
+    let monthNum = (month - 1 + 12) % 12;
+    if (monthNum === 0) {
+      onSetYear(year - 1);
+    }
+    onSetMonth(monthNum);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [year, month]);
+
   return (
     <div className="CalendarPage">
       <CalYear year={year} />
@@ -78,6 +95,8 @@ const CalendarPage = () => {
         onSetYear={onSetYear}
         year={year}
         onSetMonth={onSetMonth}
+        onClickNextBtn={onClickNextBtn}
+        onClickPrevBtn={onClickPrevBtn}
       />
       <CalDay day={day} />
       <CalDate
