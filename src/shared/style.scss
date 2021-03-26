@@ -1,0 +1,104 @@
+$blue-dark1: #0c2d48;
+$blue-dark2: #274472;
+$blue-primary: #5885af;
+$blue-light1: #c3e0e5;
+
+.App {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.CalendarPage {
+  width: 480px;
+  height: 600px;
+  background-color: $blue-dark2;
+  margin: 0 auto;
+  border-radius: 30px;
+  color: $blue-light1;
+  padding: 30px;
+}
+
+.CalYear {
+  font-weight: bold;
+  width: 100%;
+}
+
+.CalMonth {
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0 20px 0;
+  width: 100%;
+  height: 60px;
+  font-size: 24px;
+  button {
+    font-size: 24px;
+    cursor: pointer;
+    svg {
+      font-size: 36px;
+      vertical-align: middle;
+      margin-top: 5px;
+    }
+  }
+}
+
+.CalDay {
+  font-weight: bold;
+  color: $blue-primary;
+  margin-bottom: 10px;
+  ul {
+    display: flex;
+    li {
+      width: 14.28%;
+      text-align: center;
+      border-bottom: 1px solid $blue-primary;
+      padding-bottom: 20px;
+      &.today {
+        color: $blue-light1;
+        border-bottom: 1px solid $blue-light1;
+      }
+    }
+  }
+}
+
+.CalDate {
+  font-weight: bold;
+  ul {
+    display: flex;
+    flex-flow: row wrap;
+    li {
+      width: 14.28%;
+      text-align: center;
+      margin: 10px 0;
+      &.prevMonth {
+        color: $blue-primary;
+      }
+      &.currMonth {
+        color: $blue-light1;
+      }
+      &.nextMonth {
+        color: $blue-primary;
+      }
+      span {
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+      }
+      &.today {
+        span {
+          background-color: $blue-primary;
+          border-radius: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 390px) {
+  .CalDay {
+    font-size: 14px;
+  }
+}
