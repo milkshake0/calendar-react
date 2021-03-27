@@ -3,6 +3,8 @@ import CalYear from "../CalYear";
 import CalMonth from "../CalMonth";
 import CalDay from "../CalDay";
 import CalDate from "../CalDate";
+import TodoPage from "./TodoPage";
+import TodoModal from "../TodoModal";
 
 const CalendarPage = () => {
   const date = new Date();
@@ -15,6 +17,13 @@ const CalendarPage = () => {
   const [currDate, setCurrDate] = useState([]);
   const [nextDate, setNextDate] = useState([]);
 
+  const [isModal, setIsModal] = useState(false);
+  const [selectDate, setSelectDate] = useState("");
+
+  const onClickSetIsModal = (bool) => {
+    setIsModal(bool);
+  };
+
   const onSetYear = useCallback((year) => {
     setYear(year);
   }, []);
@@ -22,14 +31,6 @@ const CalendarPage = () => {
   const onSetMonth = useCallback((month) => {
     setMonth(month);
   }, []);
-
-  //   const onSetDay = (day) => {
-  //     setDay(day);
-  //   };
-
-  //   const onSetDate2 = (date2) => {
-  //     setDate2(date2);
-  //   };
 
   useEffect(() => {
     setPrevDateOfMonth(year, month);
@@ -79,15 +80,36 @@ const CalendarPage = () => {
   }, [month, year]);
   const onClickPrevBtn = useCallback(() => {
     let monthNum = (month - 1 + 12) % 12;
-    if (monthNum === 0) {
+    console.log(monthNum);
+    if (monthNum === 11) {
       onSetYear(year - 1);
     }
     onSetMonth(monthNum);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [year, month]);
 
+  const getSelectDate = (date) => {
+    console.log(date);
+  };
+
+  const closeModal = () => {
+    setIsModal(false);
+  };
+
+  const onSetSelectDate = (d) => {
+    setSelectDate(d);
+  };
+
   return (
     <div className="CalendarPage">
+      {isModal ? (
+        <>
+          <TodoModal year={year} month={month} selectDate={selectDate} />
+          <div className="dimBox" onClick={closeModal} />
+        </>
+      ) : (
+        <></>
+      )}
       <CalYear year={year} />
       <CalMonth
         date={date}
@@ -108,6 +130,9 @@ const CalendarPage = () => {
         prevDate={prevDate}
         currDate={currDate}
         nextDate={nextDate}
+        getSelectDate={getSelectDate}
+        onClickSetIsModal={onClickSetIsModal}
+        onSetSelectDate={onSetSelectDate}
       />
     </div>
   );
