@@ -19,7 +19,6 @@ const TodoInsert = ({ onInsert, onKeyDownInsert }) => {
   const onKeyDown = (e) => {
     if (value !== "") {
       if (e.keyCode === 13) {
-        //selectOption까지 담아서 객체로 보내기.
         const obj = {
           startOption,
           endOption,
@@ -55,6 +54,8 @@ const TodoInsert = ({ onInsert, onKeyDownInsert }) => {
 
   return (
     <div className="TodoInsert">
+      <select onChange={onChangeStartOption}>{startOptionEl}</select>
+      <select onChange={onChangeEndOption}>{endOptionEl}</select>
       <input
         type="text"
         onKeyDown={onKeyDown}
@@ -62,8 +63,6 @@ const TodoInsert = ({ onInsert, onKeyDownInsert }) => {
         value={value}
       />
       <button onClick={onClick}>추가</button>
-      <select onChange={onChangeStartOption}>{startOptionEl}</select>
-      <select onChange={onChangeEndOption}>{endOptionEl}</select>
     </div>
   );
 };

@@ -166,11 +166,31 @@ $blue-light1: #c3e0e5;
 .TodoPage {
   width: 480px;
   height: 600px;
-  background-color: #fff;
+  background-color: $blue-primary;
   margin: 0 auto;
   border-radius: 30px;
-  color: $blue-dark1;
-  border: 1px solid $blue-dark1;
+  color: #fff;
   padding: 30px;
   position: relative;
+  font-weight: bold;
+  .goHomeBtn {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .TodoInsert {
+    color: $blue-dark1;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 30px;
+    height: 50px;
+    input {
+    }
+    select,
+    option {
+      border: none;
+      padding: 5px;
+      border-radius: 30px;
+    }
+  }
 }

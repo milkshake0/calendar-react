@@ -1,7 +1,12 @@
 import React from "react";
 
-const TodoListItem = () => {
-  return <div></div>;
+const TodoListItem = ({ todo }) => {
+  return (
+    <div>
+      {todo.startTime}~{todo.endTime}&nbsp;
+      {todo.value}
+    </div>
+  );
 };
 
 export default TodoListItem;
