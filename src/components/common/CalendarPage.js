@@ -18,6 +18,13 @@ const CalendarPage = () => {
 
   const [isModal, setIsModal] = useState(false);
   const [selectDate, setSelectDate] = useState("");
+  const [nextId, setNextId] = useState(
+    JSON.parse(localStorage.getItem("todoId") || 0)
+  );
+
+  useEffect(() => {
+    localStorage.setItem("todoId", JSON.stringify(nextId));
+  }, [nextId]);
 
   const onClickSetIsModal = (bool) => {
     setIsModal(bool);
@@ -99,11 +106,22 @@ const CalendarPage = () => {
     setSelectDate(d);
   };
 
+  const onSetNextId = () => {
+    setNextId(nextId + 1);
+    console.log("setNextId 실행", nextId);
+  };
+
   return (
     <div className="CalendarPage">
       {isModal ? (
         <>
-          <TodoModal year={year} month={month} selectDate={selectDate} />
+          <TodoModal
+            year={year}
+            month={month}
+            selectDate={selectDate}
+            onSetNextId={onSetNextId}
+            nextId={nextId}
+          />
           <div className="dimBox" onClick={closeModal} />
         </>
       ) : (
@@ -125,7 +143,6 @@ const CalendarPage = () => {
         date2={date2}
         year={year}
         month={month}
-        // onSetDate2={onSetDate2}
         prevDate={prevDate}
         currDate={currDate}
         nextDate={nextDate}

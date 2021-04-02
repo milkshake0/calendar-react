@@ -4,7 +4,7 @@ import TodoInsert from "./TodoInsert";
 import TodoList from "./TodoList";
 import axios from "axios";
 
-const TodoModal = ({ year, month, selectDate }) => {
+const TodoModal = ({ year, month, selectDate, onSetNextId, nextId }) => {
   const [todos, setTodos] = useState([]);
   const [currTodos, setCurrTodos] = useState([]);
   const [isInsert, setIsInsert] = useState(false);
@@ -20,6 +20,7 @@ const TodoModal = ({ year, month, selectDate }) => {
       }
     };
     getTodos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectDate, year, month]);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const TodoModal = ({ year, month, selectDate }) => {
     setTodos([
       ...todos,
       {
-        id: todos.length,
+        id: nextId,
         value,
         checked: false,
         month,
@@ -42,6 +43,7 @@ const TodoModal = ({ year, month, selectDate }) => {
       },
     ]);
     setIsInsert(true);
+    onSetNextId();
   };
 
   useEffect(() => {
@@ -67,6 +69,31 @@ const TodoModal = ({ year, month, selectDate }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isInsert]);
 
+  const onChecked = (id) => {
+    const newTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, checked: !todo.checked } : todo
+    );
+    setTodos(newTodos);
+    setIsInsert(true);
+  };
+
+  const onRemove = (id) => {
+    const newTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(newTodos);
+    setIsInsert(true);
+  };
+
+  const onUpdate = (id, value) => {
+    if (value === "") {
+      //remove or update cancel 택1
+    }
+    const newTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, value } : todo
+    );
+    setTodos(newTodos);
+    setIsInsert(true);
+  };
+  console.log(todos);
   return (
     <div className="TodoModal">
       <p className="selectDate">
@@ -79,6 +106,9 @@ const TodoModal = ({ year, month, selectDate }) => {
         year={year}
         month={month}
         selectDate={selectDate}
+        onChecked={onChecked}
+        onRemove={onRemove}
+        onUpdate={onUpdate}
       />
       <div className="dimGradient"></div>
     </div>
