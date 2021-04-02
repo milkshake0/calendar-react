@@ -1,68 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import AddIcon from "@material-ui/icons/Add";
 
-const TodoInsert = ({ onInsert, onKeyDownInsert }) => {
+const TodoInsert = ({ onInsert }) => {
   const [value, setValue] = useState("");
-  const [startOptionEl, setStartOptionEl] = useState([]);
-  const [endOptionEl, setEndOptionEl] = useState([]);
-  const [startOption, setStartOption] = useState("1");
-  const [endOption, setEndOption] = useState("1");
 
-  const onChangeValue = (e) => {
+  const onChange = (e) => {
     setValue(e.target.value);
   };
   const onClick = () => {
-    if (value !== "") {
+    if (value === "") return false;
+    onInsert(value);
+    setValue("");
+  };
+  const onKeyDown = (e) => {
+    if (value === "") return false;
+    if (e.keyCode === 13) {
       onInsert(value);
       setValue("");
     }
   };
-  const onKeyDown = (e) => {
-    if (value !== "") {
-      if (e.keyCode === 13) {
-        const obj = {
-          startOption,
-          endOption,
-          value,
-        };
-        onKeyDownInsert(obj);
-        setValue("");
-      }
-    }
-  };
-  useEffect(() => {
-    let a = [];
-    for (let i = 1; i < 25; i++) {
-      a.push(i);
-    }
-    const result = a.map((res) => {
-      return (
-        <option key={res} value={res}>
-          {res}
-        </option>
-      );
-    });
-    setStartOptionEl(result);
-    setEndOptionEl(result);
-  }, []);
-
-  const onChangeStartOption = (e) => {
-    setStartOption(e.target.value);
-  };
-  const onChangeEndOption = (e) => {
-    setEndOption(e.target.value);
-  };
 
   return (
     <div className="TodoInsert">
-      <select onChange={onChangeStartOption}>{startOptionEl}</select>
-      <select onChange={onChangeEndOption}>{endOptionEl}</select>
       <input
         type="text"
-        onKeyDown={onKeyDown}
-        onChange={onChangeValue}
+        onChange={onChange}
         value={value}
+        onKeyDown={onKeyDown}
       />
-      <button onClick={onClick}>추가</button>
+      <AddIcon className="btn" onClick={onClick} />
     </div>
   );
 };

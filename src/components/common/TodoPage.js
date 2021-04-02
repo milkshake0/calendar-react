@@ -47,8 +47,6 @@ const TodoPage = ({ location }) => {
         {
           month,
           selectDate,
-          startTime: startOption,
-          endTime: endOption,
           value,
           checked: false,
           id: nextId,

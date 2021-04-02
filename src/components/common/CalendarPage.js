@@ -3,7 +3,6 @@ import CalYear from "../CalYear";
 import CalMonth from "../CalMonth";
 import CalDay from "../CalDay";
 import CalDate from "../CalDate";
-import TodoPage from "./TodoPage";
 import TodoModal from "../TodoModal";
 
 const CalendarPage = () => {
