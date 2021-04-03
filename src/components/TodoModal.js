@@ -3,10 +3,18 @@ import TodoInsert from "./TodoInsert";
 import TodoList from "./TodoList";
 import axios from "axios";
 
-const TodoModal = ({ year, month, selectDate, onSetNextId, nextId }) => {
+const TodoModal = ({
+  year,
+  month,
+  selectDate,
+  onSetNextId,
+  nextId,
+  getTodosLength,
+}) => {
   const [todos, setTodos] = useState([]);
   const [currTodos, setCurrTodos] = useState([]);
   const [isInsert, setIsInsert] = useState(false);
+  const [isChgLength, setIsChgLength] = useState(false);
 
   useEffect(() => {
     const getTodos = async () => {
@@ -51,7 +59,7 @@ const TodoModal = ({ year, month, selectDate, onSetNextId, nextId }) => {
   useEffect(() => {
     if (!isInsert) return false;
     const postTodos = async () => {
-      console.log("todos: ", todos);
+      setIsChgLength(false);
       const data = { id: year, todos: todos };
       try {
         await axios
@@ -65,6 +73,7 @@ const TodoModal = ({ year, month, selectDate, onSetNextId, nextId }) => {
       } catch (e) {
         console.log(e);
       }
+      setIsChgLength(true);
     };
     postTodos();
     setIsInsert(false);
@@ -108,7 +117,7 @@ const TodoModal = ({ year, month, selectDate, onSetNextId, nextId }) => {
   return (
     <div className="TodoModal">
       <p className="selectDate">
-        {year}. {`${month}`.length === 1 ? `0${month + 1}` : month + 1} .
+        {year}. {`${month}`.length === 1 ? `0${month + 1}` : month + 1}.&nbsp;
         {`${selectDate}`.length === 1 ? `0${selectDate}` : selectDate}
       </p>
       <TodoInsert onInsert={onInsert} />
@@ -120,6 +129,8 @@ const TodoModal = ({ year, month, selectDate, onSetNextId, nextId }) => {
         onChecked={onChecked}
         onRemove={onRemove}
         onUpdate={onUpdate}
+        getTodosLength={getTodosLength}
+        isChgLength={isChgLength}
       />
       <div className="dimGradient"></div>
     </div>

@@ -2,6 +2,7 @@ $blue-dark1: #0c2d48;
 $blue-dark2: #274472;
 $blue-primary: #5885af;
 $blue-light1: #c3e0e5;
+$yellow-light1: #faf732;
 
 .App {
   width: 100%;
@@ -78,6 +79,18 @@ $blue-light1: #c3e0e5;
       }
       &.currMonth {
         color: $blue-light1;
+        position: relative;
+        &.todo::after {
+          content: "";
+          display: block;
+          width: 4px;
+          height: 4px;
+          background-color: $yellow-light1;
+          position: absolute;
+          top: 110%;
+          left: calc(50% - 2px);
+          border-radius: 100%;
+        }
       }
       &.nextMonth {
         color: $blue-primary;
@@ -119,7 +132,7 @@ $blue-light1: #c3e0e5;
   position: absolute;
   left: 50%;
   top: 50%;
-  z-index: 1;
+  z-index: 2;
   transform: translate(-50%, -50%);
   color: $blue-primary;
   padding: 20px;
@@ -205,6 +218,7 @@ $blue-light1: #c3e0e5;
     .text {
       flex-basis: 80%;
       padding: 5px;
+      font-size: 16px;
     }
     .removeBtn {
       flex-basis: 10%;
@@ -213,6 +227,10 @@ $blue-light1: #c3e0e5;
       border: none;
       background-color: #eee;
       resize: none;
+      overflow: hidden;
+    }
+    .lined {
+      text-decoration: line-through;
     }
   }
 }
@@ -222,7 +240,7 @@ $blue-light1: #c3e0e5;
   border-radius: 30px;
   top: 0;
   left: 0;
-  z-index: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);

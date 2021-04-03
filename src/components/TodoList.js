@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TodoListItem from "./TodoListItem";
 
-const TodoList = ({ todos, onChecked, onRemove, onUpdate }) => {
+const TodoList = ({
+  todos,
+  onChecked,
+  onRemove,
+  onUpdate,
+  getTodosLength,
+  isChgLength,
+}) => {
+  useEffect(() => {
+    if (isChgLength) getTodosLength(todos.length);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [todos.length, isChgLength]);
+
   return (
     <div className="TodoList">
       <ul>

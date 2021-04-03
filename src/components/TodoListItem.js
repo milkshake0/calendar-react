@@ -7,21 +7,28 @@ const TodoListItem = ({ todo, onChecked, onRemove, onUpdate }) => {
   const [updateValue, setUpdateValue] = useState(todo.value);
   const [isEdit, setIsEdit] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
-  const inputTodo = useRef();
+  const textareaRef = useRef();
+  const divRef = useRef();
+  const [textareaHeight, setTextareaHeight] = useState(0);
+
+  const onChangeTextarea = (e) => {
+    setUpdateValue(e.target.value);
+    resizeTextareaHeight();
+  };
 
   const onClickTextUpdate = () => {
     setIsEdit(true);
+    setIsUpdate(true);
+    setTextareaHeight(`${divRef.current.scrollHeight}px`);
   };
 
   const onKeyDown = (e) => {
     if (e.keyCode === 13) {
-      console.log("keyDown 발생");
       setIsEdit(false);
       onUpdate(todo.id, updateValue);
     }
   };
   const onBlur = () => {
-    console.log("blur 발생");
     setIsEdit(false);
     if (isUpdate) {
       onUpdate(todo.id, updateValue);
@@ -30,44 +37,49 @@ const TodoListItem = ({ todo, onChecked, onRemove, onUpdate }) => {
     }
   };
 
-  if (isEdit) {
-    console.log(inputTodo.current);
-  }
+  const resizeTextareaHeight = () => {
+    if (textareaRef) {
+      setTextareaHeight(`${textareaRef.current.scrollHeight}px`);
+      textareaRef.current.style.height = textareaHeight;
+    }
+  };
   return (
     <li className="TodoListItem">
-      <div
-        className="checkBtn"
-        onClick={() => {
-          onChecked(todo.id);
-          setIsUpdate(true);
-        }}
-      >
-        {todo.checked ? <CheckCircleIcon /> : <CheckCircleOutlineIcon />}
+      <div>
+        <span
+          className="checkBtn"
+          onClick={() => {
+            onChecked(todo.id);
+            setIsUpdate(false);
+          }}
+        >
+          {todo.checked ? <CheckCircleIcon /> : <CheckCircleOutlineIcon />}
+        </span>
       </div>
       {isEdit ? (
         <textarea
           className="text textArea"
           value={updateValue}
-          onChange={(e) => setUpdateValue(e.target.value)}
+          onChange={onChangeTextarea}
           onKeyDown={onKeyDown}
           onBlur={onBlur}
-          ref={inputTodo}
+          ref={textareaRef}
+          autoFocus
+          style={{ height: textareaHeight }}
         />
       ) : (
-        <div className="text textDiv" onClick={onClickTextUpdate}>
+        <div className="text textDiv" onClick={onClickTextUpdate} ref={divRef}>
           {todo.value}
         </div>
       )}
 
-      <div
-        className="removeBtn"
-        onClick={() => {
-          console.log("onRemove 발생");
-          onRemove(todo.id);
-          setIsUpdate(true);
-        }}
-      >
-        <RemoveIcon />
+      <div className="removeBtn">
+        <RemoveIcon
+          onClick={() => {
+            onRemove(todo.id);
+            setIsUpdate(false);
+          }}
+        />
       </div>
     </li>
   );

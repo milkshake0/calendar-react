@@ -4,6 +4,7 @@ import CalMonth from "../CalMonth";
 import CalDay from "../CalDay";
 import CalDate from "../CalDate";
 import TodoModal from "../TodoModal";
+import axios from "axios";
 
 const CalendarPage = () => {
   const date = new Date();
@@ -23,6 +24,29 @@ const CalendarPage = () => {
   const [nextId, setNextId] = useState(
     JSON.parse(localStorage.getItem("todoId") || 0)
   );
+
+  // eslint-disable-next-line no-unused-vars
+  const [todosLength, setTodosLength] = useState(0);
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    console.log("딱 한번만 실행");
+    getTodos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [year]);
+  const getTodos = () => {
+    try {
+      axios
+        .get(`http://localhost:4000/todolist/${year}`)
+        .then((res) => {
+          setTodos(res.data.todos);
+          console.log("calendar get success");
+        })
+        .catch((e) => console.log("calendarPage get: ", e));
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   useEffect(() => {
     localStorage.setItem("todoId", JSON.stringify(nextId));
@@ -110,8 +134,18 @@ const CalendarPage = () => {
 
   const onSetNextId = () => {
     setNextId(nextId + 1);
-    console.log("setNextId 실행", nextId);
   };
+
+  const getTodosLength = useCallback((todosLength) => {
+    setTodosLength(todosLength);
+    getTodos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    console.log("todos: ", todos);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [todos]);
 
   return (
     <div className="CalendarPage">
@@ -123,6 +157,7 @@ const CalendarPage = () => {
             selectDate={selectDate}
             onSetNextId={onSetNextId}
             nextId={nextId}
+            getTodosLength={getTodosLength}
           />
           <div className="dimBox" onClick={closeModal} />
         </>
@@ -151,6 +186,7 @@ const CalendarPage = () => {
         getSelectDate={getSelectDate}
         onClickSetIsModal={onClickSetIsModal}
         onSetSelectDate={onSetSelectDate}
+        calTodos={todos}
       />
     </div>
   );

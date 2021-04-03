@@ -11,6 +11,7 @@ const CalDate = ({
   getSelectDate,
   onClickSetIsModal,
   onSetSelectDate,
+  calTodos,
 }) => {
   const [selectD, setSelectD] = useState("");
 
@@ -29,6 +30,22 @@ const CalDate = ({
     onSetSelectDate(d);
   };
 
+  //todolist dot
+  const dateArr = [];
+  calTodos.forEach((todo) => {
+    if (todo.month === month) {
+      if (!dateArr.includes(todo.date)) {
+        dateArr.push(todo.date);
+      }
+    }
+  });
+  const createDot = (v) => {
+    if (dateArr.includes(v)) {
+      return "todo";
+    }
+    return "";
+  };
+
   return (
     <div className="CalDate">
       <ul>
@@ -39,9 +56,13 @@ const CalDate = ({
         ))}
         {currDate.map((v) => (
           <li
-            className={`currMonth ${isToday && date2 === v ? `today` : ""} ${
-              selectD === "" + year + month + v ? "select" : ""
-            }`}
+            className={
+              createDot(v) +
+              " " +
+              `currMonth ${isToday && date2 === v ? `today` : ""} ${
+                selectD === "" + year + month + v ? "select" : ""
+              }`
+            }
             key={v}
             onClick={() => onClickCurrDate(v)}
           >
