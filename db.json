@@ -31,15 +31,8 @@
       "todos": [
         {
           "id": 2,
-          "value": "b",
-          "checked": true,
-          "month": 3,
-          "date": 1
-        },
-        {
-          "id": 9,
-          "value": "dddaa",
-          "checked": true,
+          "value": "bㅏㅗ",
+          "checked": false,
           "month": 3,
           "date": 1
         },
@@ -52,7 +45,7 @@
         },
         {
           "id": 11,
-          "value": "fsdfsd",
+          "value": "fsdfsdddd",
           "checked": false,
           "month": 3,
           "date": 1
@@ -119,6 +112,20 @@
           "checked": false,
           "month": 3,
           "date": 2
+        },
+        {
+          "id": 31,
+          "value": "ll",
+          "checked": false,
+          "month": 3,
+          "date": 1
+        },
+        {
+          "id": 32,
+          "value": "ss",
+          "checked": false,
+          "month": 3,
+          "date": 1
         }
       ]
     }

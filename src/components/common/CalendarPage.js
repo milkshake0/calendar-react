@@ -9,7 +9,9 @@ const CalendarPage = () => {
   const date = new Date();
   const [year, setYear] = useState(date.getFullYear());
   const [month, setMonth] = useState(date.getMonth());
+  // eslint-disable-next-line no-unused-vars
   const [day, setDay] = useState(date.getDay());
+  // eslint-disable-next-line no-unused-vars
   const [date2, setDate2] = useState(date.getDate());
 
   const [prevDate, setPrevDate] = useState([]);

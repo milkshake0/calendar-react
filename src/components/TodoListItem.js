@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import RemoveIcon from "@material-ui/icons/Remove";
@@ -7,6 +7,7 @@ const TodoListItem = ({ todo, onChecked, onRemove, onUpdate }) => {
   const [updateValue, setUpdateValue] = useState(todo.value);
   const [isEdit, setIsEdit] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
+  const inputTodo = useRef();
 
   const onClickTextUpdate = () => {
     setIsEdit(true);
@@ -28,6 +29,10 @@ const TodoListItem = ({ todo, onChecked, onRemove, onUpdate }) => {
       setUpdateValue(todo.value);
     }
   };
+
+  if (isEdit) {
+    console.log(inputTodo.current);
+  }
   return (
     <li className="TodoListItem">
       <div
@@ -46,6 +51,7 @@ const TodoListItem = ({ todo, onChecked, onRemove, onUpdate }) => {
           onChange={(e) => setUpdateValue(e.target.value)}
           onKeyDown={onKeyDown}
           onBlur={onBlur}
+          ref={inputTodo}
         />
       ) : (
         <div className="text textDiv" onClick={onClickTextUpdate}>

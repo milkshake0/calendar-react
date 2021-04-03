@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import AddIcon from "@material-ui/icons/Add";
+import React, { useCallback, useEffect, useState } from "react";
 import TodoInsert from "./TodoInsert";
 import TodoList from "./TodoList";
 import axios from "axios";
@@ -31,20 +30,23 @@ const TodoModal = ({ year, month, selectDate, onSetNextId, nextId }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [todos]);
 
-  const onInsert = (value) => {
-    setTodos([
-      ...todos,
-      {
-        id: nextId,
-        value,
-        checked: false,
-        month,
-        date: selectDate,
-      },
-    ]);
-    setIsInsert(true);
-    onSetNextId();
-  };
+  const onInsert = useCallback(
+    (value) => {
+      setTodos([
+        ...todos,
+        {
+          id: nextId,
+          value,
+          checked: false,
+          month,
+          date: selectDate,
+        },
+      ]);
+      setIsInsert(true);
+      onSetNextId();
+    },
+    [month, nextId, onSetNextId, selectDate, todos]
+  );
 
   useEffect(() => {
     if (!isInsert) return false;
@@ -69,31 +71,40 @@ const TodoModal = ({ year, month, selectDate, onSetNextId, nextId }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isInsert]);
 
-  const onChecked = (id) => {
-    const newTodos = todos.map((todo) =>
-      todo.id === id ? { ...todo, checked: !todo.checked } : todo
-    );
-    setTodos(newTodos);
-    setIsInsert(true);
-  };
+  const onChecked = useCallback(
+    (id) => {
+      const newTodos = todos.map((todo) =>
+        todo.id === id ? { ...todo, checked: !todo.checked } : todo
+      );
+      setTodos(newTodos);
+      setIsInsert(true);
+    },
+    [todos]
+  );
 
-  const onRemove = (id) => {
-    const newTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(newTodos);
-    setIsInsert(true);
-  };
+  const onRemove = useCallback(
+    (id) => {
+      const newTodos = todos.filter((todo) => todo.id !== id);
+      setTodos(newTodos);
+      setIsInsert(true);
+    },
+    [todos]
+  );
 
-  const onUpdate = (id, value) => {
-    if (value === "") {
-      //remove or update cancel 택1
-    }
-    const newTodos = todos.map((todo) =>
-      todo.id === id ? { ...todo, value } : todo
-    );
-    setTodos(newTodos);
-    setIsInsert(true);
-  };
-  console.log(todos);
+  const onUpdate = useCallback(
+    (id, value) => {
+      if (value === "") {
+        //remove or update cancel 택1
+      }
+      const newTodos = todos.map((todo) =>
+        todo.id === id ? { ...todo, value } : todo
+      );
+      setTodos(newTodos);
+      setIsInsert(true);
+    },
+    [todos]
+  );
+
   return (
     <div className="TodoModal">
       <p className="selectDate">
