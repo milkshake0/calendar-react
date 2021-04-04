@@ -25,12 +25,14 @@ const TodoListItem = ({ todo, onChecked, onRemove, onUpdate }) => {
   const onKeyDown = (e) => {
     if (e.keyCode === 13) {
       setIsEdit(false);
-      onUpdate(todo.id, updateValue);
+      if (todo.value !== updateValue) {
+        onUpdate(todo.id, updateValue);
+      }
     }
   };
   const onBlur = () => {
     setIsEdit(false);
-    if (isUpdate) {
+    if (isUpdate && todo.value !== updateValue) {
       onUpdate(todo.id, updateValue);
     } else {
       setUpdateValue(todo.value);
@@ -56,23 +58,28 @@ const TodoListItem = ({ todo, onChecked, onRemove, onUpdate }) => {
           {todo.checked ? <CheckCircleIcon /> : <CheckCircleOutlineIcon />}
         </span>
       </div>
-      {isEdit ? (
-        <textarea
-          className="text textArea"
-          value={updateValue}
-          onChange={onChangeTextarea}
-          onKeyDown={onKeyDown}
-          onBlur={onBlur}
-          ref={textareaRef}
-          autoFocus
-          style={{ height: textareaHeight }}
-        />
-      ) : (
-        <div className="text textDiv" onClick={onClickTextUpdate} ref={divRef}>
-          {todo.value}
-        </div>
-      )}
-
+      <div className="textBox">
+        {isEdit ? (
+          <textarea
+            className="text textArea"
+            value={updateValue}
+            onChange={onChangeTextarea}
+            onKeyDown={onKeyDown}
+            onBlur={onBlur}
+            ref={textareaRef}
+            autoFocus
+            style={{ height: textareaHeight }}
+          />
+        ) : (
+          <div
+            className={`text textDiv ${todo.checked ? "lined" : ""}`}
+            onClick={onClickTextUpdate}
+            ref={divRef}
+          >
+            {todo.value}
+          </div>
+        )}
+      </div>
       <div className="removeBtn">
         <RemoveIcon
           onClick={() => {

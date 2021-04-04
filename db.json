@@ -30,20 +30,6 @@
       "id": 2021,
       "todos": [
         {
-          "id": 59,
-          "value": "",
-          "checked": false,
-          "month": 3,
-          "date": 1
-        },
-        {
-          "id": 60,
-          "value": "two",
-          "checked": false,
-          "month": 3,
-          "date": 1
-        },
-        {
           "id": 71,
           "value": "a",
           "checked": false,
@@ -126,6 +112,20 @@
           "checked": false,
           "month": 3,
           "date": 3
+        },
+        {
+          "id": 35,
+          "value": "cfhfhkl",
+          "checked": false,
+          "month": 3,
+          "date": 1
+        },
+        {
+          "id": 36,
+          "value": "a",
+          "checked": false,
+          "month": 3,
+          "date": 1
         }
       ]
     }

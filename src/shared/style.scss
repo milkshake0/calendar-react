@@ -19,98 +19,106 @@ $yellow-light1: #faf732;
   color: $blue-light1;
   padding: 30px;
   position: relative;
-}
 
-.CalYear {
-  font-weight: bold;
-  width: 100%;
-}
+  .header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    .CalYear {
+      font-weight: bold;
+    }
+    .todayIcon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+  }
 
-.CalMonth {
-  font-weight: bold;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px 0 20px 0;
-  width: 100%;
-  height: 60px;
-  font-size: 24px;
-  button {
+  .CalMonth {
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0 20px 0;
+    width: 100%;
+    height: 60px;
     font-size: 24px;
-    cursor: pointer;
-    svg {
-      font-size: 36px;
-      vertical-align: middle;
-      margin-top: 5px;
-    }
-  }
-}
-
-.CalDay {
-  font-weight: bold;
-  color: $blue-primary;
-  margin-bottom: 10px;
-  ul {
-    display: flex;
-    li {
-      width: 14.28%;
-      text-align: center;
-      border-bottom: 1px solid $blue-primary;
-      padding-bottom: 20px;
-      &.today {
-        color: $blue-light1;
-        border-bottom: 1px solid $blue-light1;
+    button {
+      font-size: 24px;
+      cursor: pointer;
+      svg {
+        font-size: 36px;
+        vertical-align: middle;
+        margin-top: 5px;
       }
     }
   }
-}
 
-.CalDate {
-  font-weight: bold;
-  ul {
-    display: flex;
-    flex-flow: row wrap;
-    li {
-      width: 14.28%;
-      text-align: center;
-      margin: 10px 0;
-      &.prevMonth {
-        color: $blue-primary;
-      }
-      &.currMonth {
-        color: $blue-light1;
-        position: relative;
-        &.todo::after {
-          content: "";
-          display: block;
-          width: 4px;
-          height: 4px;
-          background-color: $yellow-light1;
-          position: absolute;
-          top: 110%;
-          left: calc(50% - 2px);
-          border-radius: 100%;
+  .CalDay {
+    font-weight: bold;
+    color: $blue-primary;
+    margin-bottom: 10px;
+    ul {
+      display: flex;
+      li {
+        width: 14.28%;
+        text-align: center;
+        border-bottom: 1px solid $blue-primary;
+        padding-bottom: 20px;
+        &.today {
+          color: $blue-light1;
+          border-bottom: 1px solid $blue-light1;
         }
       }
-      &.nextMonth {
-        color: $blue-primary;
-      }
-      span {
-        display: inline-block;
-        width: 36px;
-        height: 36px;
-        line-height: 36px;
-      }
-      &.today {
+    }
+  }
+
+  .CalDate {
+    font-weight: bold;
+    ul {
+      display: flex;
+      flex-flow: row wrap;
+      li {
+        width: 14.28%;
+        text-align: center;
+        margin: 10px 0;
+        &.prevMonth {
+          color: $blue-primary;
+        }
+        &.currMonth {
+          color: $blue-light1;
+          position: relative;
+          &.todo::after {
+            content: "";
+            display: block;
+            width: 4px;
+            height: 4px;
+            background-color: $yellow-light1;
+            position: absolute;
+            top: 110%;
+            left: calc(50% - 2px);
+            border-radius: 100%;
+          }
+        }
+        &.nextMonth {
+          color: $blue-primary;
+        }
         span {
-          background-color: $blue-primary;
-          border-radius: 100%;
+          display: inline-block;
+          width: 36px;
+          height: 36px;
+          line-height: 36px;
+        }
+        &.today {
+          span {
+            background-color: $blue-primary;
+            border-radius: 100%;
+          }
         }
       }
     }
   }
 }
-
 @media (max-width: 390px) {
   .CalDay {
     font-size: 14px;
@@ -201,7 +209,6 @@ $yellow-light1: #faf732;
     padding: 10px;
     padding: 15px 5px;
     border-bottom: 1px solid $blue-light1;
-    align-items: top;
     svg {
       font-size: 20px;
       vertical-align: middle;
@@ -215,22 +222,27 @@ $yellow-light1: #faf732;
     .checkBtn {
       flex-basis: 10%;
     }
-    .text {
+    .textBox {
       flex-basis: 80%;
-      padding: 5px;
-      font-size: 16px;
-    }
-    .removeBtn {
-      flex-basis: 10%;
-    }
-    .textArea {
-      border: none;
-      background-color: #eee;
-      resize: none;
-      overflow: hidden;
-    }
-    .lined {
-      text-decoration: line-through;
+      max-width: 80%;
+      padding: 0 10px;
+      .text {
+        width: 100%;
+        padding: 5px;
+        font-size: 16px;
+      }
+      .removeBtn {
+        flex-basis: 10%;
+      }
+      .textArea {
+        border: none;
+        background-color: #eee;
+        resize: none;
+        overflow: hidden;
+      }
+      .lined {
+        text-decoration: line-through;
+      }
     }
   }
 }

@@ -5,6 +5,7 @@ import CalDay from "../CalDay";
 import CalDate from "../CalDate";
 import TodoModal from "../TodoModal";
 import axios from "axios";
+import TodayIcon from "@material-ui/icons/Today";
 
 const CalendarPage = () => {
   const date = new Date();
@@ -30,7 +31,6 @@ const CalendarPage = () => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    console.log("딱 한번만 실행");
     getTodos();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [year]);
@@ -38,10 +38,7 @@ const CalendarPage = () => {
     try {
       axios
         .get(`http://localhost:4000/todolist/${year}`)
-        .then((res) => {
-          setTodos(res.data.todos);
-          console.log("calendar get success");
-        })
+        .then((res) => setTodos(res.data.todos))
         .catch((e) => console.log("calendarPage get: ", e));
     } catch (e) {
       console.log(e);
@@ -142,10 +139,16 @@ const CalendarPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    console.log("todos: ", todos);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [todos]);
+  // useEffect(() => {
+  //   console.log("todos: ", todos);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [todos]);
+
+  const onClickTodayIcon = () => {
+    const date = new Date();
+    setYear(date.getFullYear());
+    setMonth(date.getMonth());
+  };
 
   return (
     <div className="CalendarPage">
@@ -164,7 +167,10 @@ const CalendarPage = () => {
       ) : (
         <></>
       )}
-      <CalYear year={year} />
+      <div className="header-bar">
+        <CalYear year={year} />
+        <TodayIcon className="todayIcon" onClick={onClickTodayIcon} />
+      </div>
       <CalMonth
         date={date}
         month={month}
