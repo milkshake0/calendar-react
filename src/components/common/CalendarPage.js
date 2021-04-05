@@ -119,17 +119,17 @@ const CalendarPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [year, month]);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setIsModal(false);
-  };
+  }, []);
 
-  const onSetSelectDate = (d) => {
+  const onSetSelectDate = useCallback((d) => {
     setSelectDate(d);
-  };
+  }, []);
 
-  const onSetNextId = () => {
+  const onSetNextId = useCallback(() => {
     setNextId(nextId + 1);
-  };
+  }, [nextId]);
 
   const getTodosLength = useCallback((todosLength) => {
     setTodosLength(todosLength);
