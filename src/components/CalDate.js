@@ -8,7 +8,6 @@ const CalDate = ({
   prevDate,
   currDate,
   nextDate,
-  getSelectDate,
   onClickSetIsModal,
   onSetSelectDate,
   calTodos,
@@ -21,8 +20,6 @@ const CalDate = ({
     `${currDateObj.getFullYear()}-${currDateObj.getMonth()}-${currDateObj.getDate()}`;
 
   const onClickCurrDate = (d) => {
-    const date = new Date(year, month, d);
-    getSelectDate(date);
     setSelectD("" + year + month + d);
     if (selectD === "" + year + month + d) {
       onClickSetIsModal(true);
@@ -59,9 +56,9 @@ const CalDate = ({
             className={
               createDot(v) +
               " " +
-              `currMonth ${isToday && date2 === v ? `today` : ""} ${
-                selectD === "" + year + month + v ? "select" : ""
-              }`
+              `currMonth 
+              ${isToday && date2 === v ? `today` : ""} 
+              ${selectD === "" + year + month + v ? "select" : ""}`
             }
             key={v}
             onClick={() => onClickCurrDate(v)}

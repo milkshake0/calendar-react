@@ -26,6 +26,14 @@ const CalendarPage = () => {
     JSON.parse(localStorage.getItem("todoId") || 0)
   );
 
+  const onSetYear = useCallback((year) => {
+    setYear(year);
+  }, []);
+
+  const onSetMonth = useCallback((month) => {
+    setMonth(month);
+  }, []);
+
   // eslint-disable-next-line no-unused-vars
   const [todosLength, setTodosLength] = useState(0);
   const [todos, setTodos] = useState([]);
@@ -34,12 +42,15 @@ const CalendarPage = () => {
     getTodos();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [year]);
-  const getTodos = () => {
+  const getTodos = async () => {
     try {
-      axios
+      await axios
         .get(`http://localhost:4000/todolist/${year}`)
         .then((res) => setTodos(res.data.todos))
-        .catch((e) => console.log("calendarPage get: ", e));
+        .catch((e) => {
+          console.log("calendarPage get: ", e);
+          setTodos([]);
+        });
     } catch (e) {
       console.log(e);
     }
@@ -52,14 +63,6 @@ const CalendarPage = () => {
   const onClickSetIsModal = (bool) => {
     setIsModal(bool);
   };
-
-  const onSetYear = useCallback((year) => {
-    setYear(year);
-  }, []);
-
-  const onSetMonth = useCallback((month) => {
-    setMonth(month);
-  }, []);
 
   useEffect(() => {
     setPrevDateOfMonth(year, month);
@@ -109,17 +112,12 @@ const CalendarPage = () => {
   }, [month, year]);
   const onClickPrevBtn = useCallback(() => {
     let monthNum = (month - 1 + 12) % 12;
-    console.log(monthNum);
     if (monthNum === 11) {
       onSetYear(year - 1);
     }
     onSetMonth(monthNum);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [year, month]);
-
-  const getSelectDate = (date) => {
-    console.log(date);
-  };
 
   const closeModal = () => {
     setIsModal(false);
@@ -168,13 +166,12 @@ const CalendarPage = () => {
         <></>
       )}
       <div className="header-bar">
-        <CalYear year={year} />
+        <CalYear year={year} onSetYear={onSetYear} />
         <TodayIcon className="todayIcon" onClick={onClickTodayIcon} />
       </div>
       <CalMonth
         date={date}
         month={month}
-        onSetYear={onSetYear}
         year={year}
         onSetMonth={onSetMonth}
         onClickNextBtn={onClickNextBtn}
@@ -189,7 +186,6 @@ const CalendarPage = () => {
         prevDate={prevDate}
         currDate={currDate}
         nextDate={nextDate}
-        getSelectDate={getSelectDate}
         onClickSetIsModal={onClickSetIsModal}
         onSetSelectDate={onSetSelectDate}
         calTodos={todos}

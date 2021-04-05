@@ -10,6 +10,7 @@ const TodoModal = ({
   onSetNextId,
   nextId,
   getTodosLength,
+  onKeyDownModal,
 }) => {
   const [todos, setTodos] = useState([]);
   const [currTodos, setCurrTodos] = useState([]);

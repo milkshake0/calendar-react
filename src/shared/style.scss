@@ -2,7 +2,7 @@ $blue-dark1: #0c2d48;
 $blue-dark2: #274472;
 $blue-primary: #5885af;
 $blue-light1: #c3e0e5;
-$yellow-light1: #faf732;
+$yellow-light1: #ffe268;
 
 .App {
   width: 100%;
@@ -27,6 +27,43 @@ $yellow-light1: #faf732;
     padding: 0 8px;
     .CalYear {
       font-weight: bold;
+      position: relative;
+      .yearList {
+        position: absolute;
+        top: 130%;
+        left: 50%;
+        z-index: 1;
+        transform: translate(-50%, 0);
+        width: auto;
+        height: auto;
+        max-height: 195px;
+        background-color: #fff;
+        border-radius: 10px;
+        color: $blue-primary;
+        padding: 5px;
+        text-align: center;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+          width: 10px;
+        }
+        /* Track */
+        &::-webkit-scrollbar-track {
+          border-radius: 10px;
+        }
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+          background: #ccc;
+          border-radius: 10px;
+        }
+        li {
+          cursor: pointer;
+          padding: 5px 3px;
+          border-radius: 10px;
+          &:hover {
+            background-color: $blue-light1;
+          }
+        }
+      }
     }
     .todayIcon {
       font-size: 24px;
@@ -43,6 +80,7 @@ $yellow-light1: #faf732;
     width: 100%;
     height: 60px;
     font-size: 24px;
+    position: relative;
     button {
       font-size: 24px;
       cursor: pointer;
@@ -52,8 +90,88 @@ $yellow-light1: #faf732;
         margin-top: 5px;
       }
     }
+    .month {
+      cursor: pointer;
+      position: relative;
+      padding: 3px 0;
+    }
+    .monthList {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      z-index: 2;
+      transform: translate(-50%, 0);
+      width: 300px;
+      height: auto;
+      background-color: #fff;
+      border-radius: 30px;
+      color: $blue-primary;
+      display: flex;
+      flex-flow: row wrap;
+      padding: 10px;
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -20px;
+        left: 140px;
+        border-color: transparent transparent #fff transparent;
+        border-style: solid;
+        border-width: 10px;
+      }
+      li {
+        width: 30%;
+        font-size: 16px;
+        padding: 6px 0;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 30px;
+        margin: 5px 4px;
+        &:hover {
+          background-color: $blue-light1;
+        }
+      }
+    }
+    @media (max-width: 390px) {
+      .monthList {
+        width: 240px;
+        padding: 10px;
+        &::before {
+          top: -20px;
+          left: 110px;
+          border-width: 10px;
+        }
+        li {
+          width: 50%;
+          font-size: 14px;
+          padding: 10px 0;
+          text-align: center;
+          margin: 0;
+        }
+      }
+    }
   }
-
+  .underline {
+    &::before {
+      transition: transform 0.3s ease;
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      transform-origin: right bottom;
+      transform: scaleX(0);
+      height: 1px;
+      background-color: $blue-light1;
+      inset: auto 0 0 0;
+      @media (max-width: 390px) {
+        display: none;
+      }
+    }
+    &:hover::before {
+      transform: scaleX(1);
+      transform-origin: left bottom;
+    }
+  }
   .CalDay {
     font-weight: bold;
     color: $blue-primary;
@@ -140,7 +258,7 @@ $yellow-light1: #faf732;
   position: absolute;
   left: 50%;
   top: 50%;
-  z-index: 2;
+  z-index: 100;
   transform: translate(-50%, -50%);
   color: $blue-primary;
   padding: 20px;
@@ -229,7 +347,7 @@ $yellow-light1: #faf732;
       .text {
         width: 100%;
         padding: 5px;
-        font-size: 16px;
+        font-size: 14px;
       }
       .removeBtn {
         flex-basis: 10%;
@@ -252,8 +370,12 @@ $yellow-light1: #faf732;
   border-radius: 30px;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 99;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
+}
+
+.cursor {
+  cursor: pointer;
 }
