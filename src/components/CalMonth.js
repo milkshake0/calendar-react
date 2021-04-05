@@ -26,7 +26,7 @@ const CalMonth = ({ month, onClickNextBtn, onClickPrevBtn, onSetMonth }) => {
             <li
               key={v}
               onClick={() => {
-                onSetMonth(v);
+                onSetMonth(parseInt(v));
                 setIsMonthModal(false);
               }}
             >

@@ -117,7 +117,7 @@ const TodoModal = ({
   return (
     <div className="TodoModal">
       <p className="selectDate">
-        {year}. {`${month}`.length === 1 ? `0${month + 1}` : month + 1}.&nbsp;
+        {year}. {`${month}`.length === 1 ? `0${+month + 1}` : +month + 1}.&nbsp;
         {`${selectDate}`.length === 1 ? `0${selectDate}` : selectDate}
       </p>
       <TodoInsert onInsert={onInsert} />
