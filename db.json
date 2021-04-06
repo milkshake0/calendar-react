@@ -1,170 +1,92 @@
 {
   "todolist": [
     {
-      "id": 2023,
-      "todos": [
-        {
-          "id": 67,
-          "value": "a",
-          "checked": false,
-          "month": 0,
-          "date": 13
-        }
-      ]
-    },
-    {
-      "id": 2022,
-      "todos": [
-        {
-          "month": 3,
-          "date": 1,
-          "value": "할일 목록 4",
-          "checked": false,
-          "id": 1001
-        },
-        {
-          "id": 0,
-          "value": "a",
-          "checked": false,
-          "month": 3,
-          "date": 1
-        },
-        {
-          "id": 2,
-          "value": "aa",
-          "checked": false,
-          "month": 3,
-          "date": 1
-        },
-        {
-          "id": 74,
-          "value": "test 20220101",
-          "checked": false,
-          "month": 0,
-          "date": 1
-        }
-      ]
-    },
-    {
-      "id": 2010,
-      "todos": [
-        {
-          "id": 76,
-          "value": "test20100426",
-          "checked": true,
-          "month": 3,
-          "date": 26
-        }
-      ]
-    },
-    {
-      "id": 2014,
-      "todos": [
-        {
-          "id": 127,
-          "value": "a",
-          "checked": false,
-          "month": 3,
-          "date": 29
-        }
-      ]
-    },
-    {
       "id": 2011,
       "todos": []
     },
     {
-      "id": 2021,
-      "todos": [
-        {
-          "id": 37,
-          "value": "정처산기 실기 시험날!",
-          "checked": false,
-          "month": 3,
-          "date": 24
-        },
-        {
-          "id": 38,
-          "value": "오전 9시 동광중학교",
-          "checked": false,
-          "month": 3,
-          "date": 24
-        },
-        {
-          "id": 39,
-          "value": "할리스 오전10시",
-          "checked": false,
-          "month": 3,
-          "date": 3
-        },
-        {
-          "id": 41,
-          "value": "오후5시 수진역",
-          "checked": false,
-          "month": 3,
-          "date": 25
-        },
-        {
-          "id": 42,
-          "value": "알레르기 약 챙기기",
-          "checked": false,
-          "month": 3,
-          "date": 25
-        },
-        {
-          "id": 43,
-          "value": "칫솔 챙기기",
-          "checked": false,
-          "month": 3,
-          "date": 25
-        },
-        {
-          "id": 44,
-          "value": "현지언니 연차. 하루종일 놀기ㅣㅣㅣ",
-          "checked": false,
-          "month": 3,
-          "date": 26
-        },
-        {
-          "id": 45,
-          "value": "할리스 오후12시",
-          "checked": false,
-          "month": 2,
-          "date": 27
-        },
-        {
-          "id": 46,
-          "value": "할리스 오전10시",
-          "checked": false,
-          "month": 2,
-          "date": 20
-        },
-        {
-          "id": 47,
-          "value": "할리스 오전11시",
-          "checked": false,
-          "month": 2,
-          "date": 13
-        },
-        {
-          "id": 48,
-          "value": "할리스 오전10시",
-          "checked": false,
-          "month": 3,
-          "date": 10
-        },
-        {
-          "id": 49,
-          "value": "할리스 오전10시",
-          "checked": false,
-          "month": 3,
-          "date": 17
-        }
-      ]
+      "id": 2012,
+      "todos": []
+    },
+    {
+      "id": 2013,
+      "todos": []
+    },
+    {
+      "id": 2014,
+      "todos": []
     },
     {
       "id": 2015,
       "todos": []
+    },
+    {
+      "id": 2016,
+      "todos": []
+    },
+    {
+      "id": 2017,
+      "todos": []
+    },
+    {
+      "id": 2018,
+      "todos": []
+    },
+    {
+      "id": 2019,
+      "todos": []
+    },
+    {
+      "id": 2020,
+      "todos": []
+    },
+    {
+      "id": 2022,
+      "todos": []
+    },
+    {
+      "id": 2023,
+      "todos": []
+    },
+    {
+      "id": 2024,
+      "todos": []
+    },
+    {
+      "id": 2025,
+      "todos": []
+    },
+    {
+      "id": 2026,
+      "todos": []
+    },
+    {
+      "id": 2027,
+      "todos": []
+    },
+    {
+      "id": 2028,
+      "todos": []
+    },
+    {
+      "id": 2029,
+      "todos": []
+    },
+    {
+      "id": 2030,
+      "todos": []
+    },
+    {
+      "id": 2031,
+      "todos": [
+        {
+          "id": 0,
+          "value": "test1",
+          "checked": false,
+          "month": 3,
+          "date": 1
+        }
+      ]
     }
   ]
 }
