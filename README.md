@@ -4,6 +4,10 @@
 일정은 추가, 삭제, 체크/체크해제, 수정이 가능하며 모든 일정 데이터는 Mock Server인 json-server의 db.json 파일 내에 저장됩니다. 
 
 ![calendar1](https://user-images.githubusercontent.com/77560344/116828760-af2bc180-abdb-11eb-906d-7d76db143f70.PNG)
+-
+![calendar2](https://user-images.githubusercontent.com/77560344/116828777-d4203480-abdb-11eb-9794-7f2e3d55422f.PNG)
+-
+![calendar3](https://user-images.githubusercontent.com/77560344/116828778-d6828e80-abdb-11eb-9dbc-f47e35a0e414.PNG)
 
 ## How to run
 
